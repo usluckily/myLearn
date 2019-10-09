@@ -1,0 +1,58 @@
+class animals {
+    constructor (options){
+        this.options = options
+        this.attacker = null
+        this.initHealth = this.options.health
+        this.isDie = false
+    }
+
+    get health (){
+        return this.initHealth
+    }
+
+    set health (val){
+        this.initHealth = val
+        if(this.initHealth < this.options.health && this.attacker){
+            this.attack(this.attacker)
+        }
+        if(this.initHealth <= 0){
+            this.die()
+        }
+    }
+
+    say (){
+        if(!this.options.say) return console.log(this.options.name + ' has no noise')
+        console.log('A ' + this.options.name + ' made ' + this.options.noise + ' noise')
+    }
+
+    run (){
+        console.log(this.options.name + ' can ' + 'move')
+    }
+
+    food (){
+        if(!this.options.food) return console.log(this.options.name + ' eat nothing')
+        console.log(this.options.name + ' eat ' + this.options.food)
+    }
+
+    die (){
+        console.log(this.options.name + ' has die')
+        this.isDie = true
+    }
+
+    attack (target){
+        let targetOpt = {...target.options}, myOpt = {...this.options}
+
+        target.attacker = this
+
+        let sh = setInterval(() => {
+            if(target.health <= 0 || target.isDie || this.isDie) {
+                return clearInterval(sh)
+            }
+            target.health -= myOpt.damage
+            console.log(`${myOpt.name} attack ${targetOpt.name}, damage:${myOpt.damage}, ${targetOpt.name} has ${target.health} health`)
+        },1000)
+    }
+}
+
+module.exports = animals
+
