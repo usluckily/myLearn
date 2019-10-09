@@ -1,0 +1,10 @@
+const animals = require('./animals') 
+
+class dog extends animals{
+    constructor (...args){
+        super(...args)
+        this.noise = 'wang wang wang'
+    }
+} 
+
+module.exports = dog
