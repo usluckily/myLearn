@@ -1,0 +1,17 @@
+const animals = require('./animals') 
+
+class cat extends animals{
+    constructor (...args){
+        super(...args)
+    }
+
+    say (){
+        console.log('..........')
+    }
+
+    run (){
+        console.log(this.options.name + ' can ' + 'move and jump')
+    }
+}
+
+module.exports = cat
