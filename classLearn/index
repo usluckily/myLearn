@@ -1,0 +1,20 @@
+const cat = require('./cat')
+const dog = require('./dog')
+
+let tom = new cat({
+    name: 'tom',
+    damage: 10,
+    health: 20
+})
+
+let jack = new dog({
+    name: 'jack',
+    damage: 5,
+    health: 50
+})
+
+cat.prototype.run = () => {
+    console.log('tom has some promble, he cant jump now')
+}
+
+jack.attack(tom)
